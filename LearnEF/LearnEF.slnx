@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="LearnUnitTest/LearnUnitTest.csproj" />
+  <Project Path="LearnWebUI/LearnWebUI.csproj" />
+</Solution>
