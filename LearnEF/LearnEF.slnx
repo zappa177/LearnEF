@@ -1,4 +1,11 @@
 <Solution>
-  <Project Path="LearnUnitTest/LearnUnitTest.csproj" />
-  <Project Path="LearnWebUI/LearnWebUI.csproj" />
+  <Folder Name="/src/">
+    <Project Path="Entities/Entities.csproj" Id="415c6cbd-7567-4c65-9700-0dc5f9a54664" />
+    <Project Path="LearnWebUI/LearnWebUI.csproj" />
+    <Project Path="ServiceContracts/ServiceContracts.csproj" Id="9c898f25-e58d-4d3e-890f-8f7b358873f9" />
+    <Project Path="Services/Services.csproj" Id="e6976431-8f9d-4594-a6ad-a1f659147571" />
+  </Folder>
+  <Folder Name="/Test/">
+    <Project Path="Test/Test.csproj" Id="77f0129e-0acb-48b2-84c3-1eff8d0fdd1c" />
+  </Folder>
 </Solution>
