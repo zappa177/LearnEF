@@ -7,9 +7,9 @@ namespace ServiceContracts
     public interface ICountriesService
     {
         CountryResponse AddCountry(CountryAddRequest? countryAddRequest);
-        //List<CountryResponse> GetAllCountries();
-        //CountryResponse? GetCountryByID(Guid countryID);
-        //CountryResponse? UpdateCountry(CountryUpdateRequest? countryUpdateRequest);
-        //bool DeleteCountry(Guid countryID);
+        List<CountryResponse> GetAllCountries();
+        CountryResponse? GetCountryByID(Guid countryID);
+        CountryResponse? UpdateCountry(CountryUpdateRequest? countryUpdateRequest);
+        bool DeleteCountry(Guid? countryID);
     }
 }
