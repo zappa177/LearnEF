@@ -10,10 +10,126 @@ namespace Services
         private readonly List<Person> _persons;
         private readonly ICountriesService _countriesService;
 
-        public PersonService()
+        public PersonService(bool initialize = true)
         {
             _persons = new List<Person>();
             _countriesService = new CountriesService();
+            if (initialize)
+            {
+                _persons.AddRange(new List<Person>()
+                    {
+                        new Person()
+                        {
+                            PersonID = Guid.Parse("C72F55DF-CC1A-468F-BD98-8BBB0E6E5942"),
+                            PersonName = "Wadsworth",
+                            Email = "wiskov0@devhub.com",
+                            DateOfBirth = DateTime.Parse("1/17/2018"),
+                            Gender = "Male",
+                            CountryID = Guid.Parse("82588A06-588C-474B-8ACF-91BEFBA6E4D4"),
+                            Address = "6 Rigney Road",
+                            ReceiverNewsletter = true
+                        },
+                        new Person()
+                        {
+                            PersonID = Guid.Parse("7BD92340-2BDE-450C-A423-DC8C115E9D37"),
+                            PersonName = "Gustavo",
+                            Email = "gextall1@google.it",
+                            DateOfBirth = DateTime.Parse("2/9/2005"),
+                            Gender = "Male",
+                            CountryID = Guid.Parse("82588A06-588C-474B-8ACF-91BEFBA6E4D4"),
+                            Address = "4 Golf Course Center",
+                            ReceiverNewsletter = false
+                        },
+                        new Person()
+                        {
+                            PersonID = Guid.Parse("2E56F780-8E16-4A97-9FFC-9DC1B24C394A"),
+                            PersonName = "Gilberto",
+                            Email = "gdoick2@tiny.cc",
+                            DateOfBirth = DateTime.Parse("6/29/2001"),
+                            Gender = "Male",
+                            CountryID = Guid.Parse("82588A06-588C-474B-8ACF-91BEFBA6E4D4"),
+                            Address = "2824 Fisk Trail",
+                            ReceiverNewsletter = false
+                        },
+                        new Person()
+                        {
+                            PersonID = Guid.Parse("B1FCDB18-1EE7-4575-9E39-5AF643F134B6"),
+                            PersonName = "Murial",
+                            Email = "mreuven3@twitter.com",
+                            DateOfBirth = DateTime.Parse("11/26/2009"),
+                            Gender = "Female",
+                            CountryID = Guid.Parse("82588A06-588C-474B-8ACF-91BEFBA6E4D4"),
+                            Address = "51 Evergreen Plaza",
+                            ReceiverNewsletter = true
+                        },
+                        new Person()
+                        {
+                            PersonID = Guid.Parse("77D07402-5542-4471-95F8-024CE7CE24A3"),
+                            PersonName = "Dorie",
+                            Email = "dmeredyth4@umn.edu",
+                            DateOfBirth = DateTime.Parse("3/18/2023"),
+                            Gender = "Male",
+                            CountryID = Guid.Parse("82588A06-588C-474B-8ACF-91BEFBA6E4D4"),
+                            Address = "392 Declaration Road",
+                            ReceiverNewsletter = true
+                        },
+                        new Person()
+                        {
+                            PersonID = Guid.Parse("CCF647F8-CBAC-47DE-A345-6350D4F728AD"),
+                            PersonName = "Nike",
+                            Email = "nhasty5@github.com",
+                            DateOfBirth = DateTime.Parse("8/25/2003"),
+                            Gender = "Female",
+                            CountryID = Guid.Parse("82588A06-588C-474B-8ACF-91BEFBA6E4D4"),
+                            Address = "7071 Oriole Crossing",
+                            ReceiverNewsletter = false
+                        },
+                        new Person()
+                        {
+                            PersonID = Guid.Parse("A826188D-793D-46F4-AA4C-B4B405FFB9E9"),
+                            PersonName = "Juliette",
+                            Email = "jwhittock6@state.tx.us",
+                            DateOfBirth = DateTime.Parse("11/1/2002"),
+                            Gender = "Female",
+                            CountryID = Guid.Parse("82588A06-588C-474B-8ACF-91BEFBA6E4D4"),
+                            Address = "4786 Sutherland Center",
+                            ReceiverNewsletter = true
+                        },
+                        new Person()
+                        {
+                            PersonID = Guid.Parse("0C3E222E-137D-4DC2-B417-B6C5C956DA89"),
+                            PersonName = "Pietro",
+                            Email = "pportwaine7@rakuten.co.jp",
+                            DateOfBirth = DateTime.Parse("11/27/2002"),
+                            Gender = "Male",
+                            CountryID = Guid.Parse("82588A06-588C-474B-8ACF-91BEFBA6E4D4"),
+                            Address = "9 Stuart Lane",
+                            ReceiverNewsletter = false
+                        },
+                        new Person()
+                        {
+                            PersonID = Guid.Parse("1624C585-78F2-43F6-8910-2DF2823969CE"),
+                            PersonName = "Rorie",
+                            Email = "rlude8@weather.com",
+                            DateOfBirth = DateTime.Parse("1/29/2020"),
+                            Gender = "Female",
+                            CountryID = Guid.Parse("82588A06-588C-474B-8ACF-91BEFBA6E4D4"),
+                            Address = "19335 Goodland Plaza",
+                            ReceiverNewsletter = false
+                        },
+                        new Person()
+                        {
+                            PersonID = Guid.Parse("4677BB05-EE46-4AB0-B378-22B34101D759"),
+                            PersonName = "Mordecai",
+                            Email = "mmorch9@shop-pro.jp",
+                            DateOfBirth = DateTime.Parse("1/11/2007"),
+                            Gender = "Male",
+                            CountryID = Guid.Parse("82588A06-588C-474B-8ACF-91BEFBA6E4D4"),
+                            Address = "7084 Mcguire Road",
+                            ReceiverNewsletter = false
+                        }
+                });
+            }
         }
 
         //phuong thuc them moi person, tra ve personResponse , tao them country name cho personResponse
@@ -133,7 +249,7 @@ namespace Services
 
 
 
-        public List<PersonResponse> GetFilteredPersons(string? searchBy, string? searchString)
+        public List<PersonResponse> GetFilteredPersons(string searchBy, string? searchString)
         {
             List<PersonResponse> allPersons = GetAllPersons();
             List<PersonResponse> matchingPersons = allPersons;
@@ -143,13 +259,13 @@ namespace Services
             }
             switch (searchBy)
             {
-                case nameof(Person.PersonName):
+                case nameof(PersonResponse.PersonName):
                     matchingPersons = allPersons.Where(p => (!string.IsNullOrEmpty(p.PersonName) ? p.PersonName.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true)).ToList();
                     break;
-                case nameof(Person.DateOfBirth):
+                case nameof(PersonResponse.DateOfBirth):
                     matchingPersons = allPersons.Where(p => (p.DateOfBirth != null) ? p.DateOfBirth.Value.ToString("yyyy-MM-dd").Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
                     break;
-                case nameof(Person.Gender):
+                case nameof(PersonResponse.Gender):
                     matchingPersons = allPersons.Where(p => (!string.IsNullOrEmpty(p.Gender) ? p.Gender.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true)).ToList();
                     break;
                 default:
