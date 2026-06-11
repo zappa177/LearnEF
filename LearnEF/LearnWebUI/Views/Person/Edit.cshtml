@@ -1,12 +1,13 @@
 ﻿@{
-    ViewBag.Title = "Create Person";
+    ViewBag.Title = "Edit Person";
 }
-@model PersonAddRequest
+@model PersonUpdateRequest
 
 <a href="~/person/index" class="link-hover">Back to List</a>
-<h2>Create Person</h2>
+<h2>Edit Person</h2>
 <div class="w-50 center-box">
-    <form asp-controller="Person" asp-action="Create" method="post">
+    <form asp-controller="Person" asp-action="Edit" method="post">
+        <input type="hidden" asp-for="PersonID" />
         @* personname   *@
         <div class="form-field flex">
             <div class="flex-1">
@@ -14,7 +15,7 @@
             </div>
             <div class="flex-1">
                 <input asp-for="PersonName" type="text" class="form-input"/>
-                <span asp-validation-for="PersonName"></span>
+                @* <span asp-validation-for="PersonName"></span> *@
             </div>
         </div>
         @* Email *@
@@ -24,7 +25,7 @@
             </div>
             <div class="flex-1">
                 <input asp-for="Email" type="email" class="form-input" />
-                <span asp-validation-for="Email" class="text-red"></span>
+                @* <span asp-validation-for="Email" class="text-red"></span> *@
             </div>
         </div>
             @* Date of birth *@
@@ -87,7 +88,7 @@
         @*Submit Button*@
         <div class="form-field flex">
             <div class="flex-1">
-                <button type="submit" class="button button-blue-back">Create</button>
+                <button type="submit" class="button button-blue-back">Update</button>
                 @if (ViewBag.Error != null)
                 {
                     <div class="text-red ml">
@@ -103,6 +104,3 @@
         </div>
     </form>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" ></script>
