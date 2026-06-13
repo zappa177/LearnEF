@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.Extensions.Logging;
 using RepositoryContracts;
 using ServiceContracts;
 using ServiceContracts.DTO;
@@ -11,11 +12,13 @@ namespace Services
         //private readonly PersonsDbContext _db;
         private readonly ICountriesService _countriesService;
         private readonly IPersonsRepository _personsRepository;
+        private readonly ILogger<PersonService> _logger;
 
-        public PersonService(IPersonsRepository personsRepository, ICountriesService countriesService)
+        public PersonService(IPersonsRepository personsRepository, ICountriesService countriesService,ILogger<PersonService> logger)
         {
             _personsRepository = personsRepository;
             _countriesService = countriesService;
+            _logger = logger;
         }
 
         //phuong thuc them moi person, tra ve personResponse , tao them country name cho personResponse
@@ -50,6 +53,8 @@ namespace Services
 
         public async Task<List<PersonResponse>> GetAllPersons()
         {
+            _logger.LogInformation("get all person of person service");
+          
             var persons = await _personsRepository.GetAllPersons();
 
 
@@ -123,6 +128,7 @@ namespace Services
 
         public async Task<List<PersonResponse>> GetFilteredPersons(string searchBy, string? searchString)
         {
+            _logger.LogInformation("get filtered person of person service");
             if (string.IsNullOrWhiteSpace(searchString))
             {
                 // Nếu không có searchString thì trả về tất cả
@@ -159,6 +165,7 @@ namespace Services
 
         public async Task<List<PersonResponse>> GetSortedPersons(List<PersonResponse> allPersons, string sortBy, SortOrderOptions sortOrder)
         {
+            _logger.LogInformation("get sorted person of person service");
             if (string.IsNullOrEmpty(sortBy))
             {
                 return allPersons;

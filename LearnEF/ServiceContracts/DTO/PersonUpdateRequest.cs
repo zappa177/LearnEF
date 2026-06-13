@@ -9,6 +9,7 @@ namespace ServiceContracts.DTO
         [Required(ErrorMessage = "Person ID is required.")]
         public Guid PersonID { get; set; }
         [Required(ErrorMessage = "Person name is required.")]
+        [StringLength(40, ErrorMessage = "Person name cannot exceed 40 characters.")]
         public string? PersonName { get; set; }
         [Required(ErrorMessage = "Email is required.")]
         [EmailAddress(ErrorMessage = "Invalid email format.")]

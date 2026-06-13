@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +26,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.9" />
     <PackageReference Include="Rotativa.AspNetCore" Version="1.4.0" />
+    <PackageReference Include="Serilog" Version="4.3.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
+    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="10.0.0" />
   </ItemGroup>
 
 </Project>

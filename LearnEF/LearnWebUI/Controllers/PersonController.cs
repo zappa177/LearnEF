@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LearnWebUI.Filters.ActionFilter;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Rotativa.AspNetCore;
 using ServiceContracts;
@@ -15,19 +16,24 @@ namespace LearnWebUI.Controllers
         //private field
         private readonly IPersonService _personService;
         private readonly ICountriesService _countriesService;
-        public PersonController(IPersonService personService, ICountriesService countriesService)
+        private readonly ILogger<PersonController> _logger;
+        public PersonController(IPersonService personService, ICountriesService countriesService,ILogger<PersonController> logger)
         {
             _personService = personService;
             _countriesService = countriesService;
+            _logger = logger;
         }
 
 
 
         [Route("index")]
         [Route("/")]
+        [TypeFilter(typeof(PersonListActionFilter))]
         public async Task<IActionResult> Index(string searchBy, string? searchString, string sortby/* = nameof(PersonResponse.PersonName)*/,
             SortOrderOptions sortOrder /*= SortOrderOptions.ASC*/)
         {
+            _logger.LogInformation("Index information method of personcontroller");
+            _logger.LogDebug($"searchBy : {searchBy} ,searchString : {searchString} , sortBy : {sortby} ,sortOrder : {sortOrder}");
             ViewBag.SearchFields = new Dictionary<string, string>()
             {
                 { nameof(PersonResponse.PersonName) , "Person Name" },
