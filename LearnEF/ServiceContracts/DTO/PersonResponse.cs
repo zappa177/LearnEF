@@ -14,7 +14,6 @@ namespace ServiceContracts.DTO
         public string? Address { get; set; }
         public bool ReceiverNewsletter { get; set; }
         public double? Age { get; set; }
-
         public override bool Equals(object? obj)
         {
             if (obj == null) return false;
@@ -36,7 +35,7 @@ namespace ServiceContracts.DTO
                 PersonName = this.PersonName,
                 Email = this.Email,
                 DateOfBirth = this.DateOfBirth,
-                Gender = (GenderOption)Enum.Parse(typeof(GenderOption), Gender, true),
+                Gender = (GenderOption)Enum.Parse(typeof(GenderOption), this.Gender ?? nameof(GenderOption.Other), true),
                 CountryID = this.CountryID ?? Guid.Empty,
                 Address = this.Address,
                 ReceiverNewsletter = this.ReceiverNewsletter
@@ -58,7 +57,8 @@ namespace ServiceContracts.DTO
                 CountryID = person.CountryID,
                 Address = person.Address,
                 ReceiverNewsletter = person.ReceiverNewsletter,
-                Age = person.DateOfBirth.HasValue ? (int)((DateTime.Now - person.DateOfBirth.Value).TotalDays / 365.25) : (int?)null
+                Age = person.DateOfBirth.HasValue ? (int)((DateTime.Now - person.DateOfBirth.Value).TotalDays / 365.25) : (int?)null,
+                Country = person.Country?.CountryName
             };
         }
     }

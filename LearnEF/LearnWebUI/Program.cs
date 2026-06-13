@@ -1,3 +1,7 @@
+using Entities;
+using Microsoft.EntityFrameworkCore;
+using Repositories;
+using RepositoryContracts;
 using ServiceContracts;
 using Services;
 
@@ -5,12 +9,15 @@ using Services;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 //add services
-builder.Services.AddSingleton<ICountriesService, CountriesService>();
-builder.Services.AddSingleton<IPersonService, PersonService>();
+builder.Services.AddScoped<IPersonsRepository, PersonsRepository>();
+builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
+builder.Services.AddScoped<ICountriesService, CountriesService>();
+builder.Services.AddScoped<IPersonService, PersonService>();
 
 //add context 
-//builder.Services.AddDbContext<MyDbContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<PersonsDbContext>(
+    option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+    );
 
 
 
@@ -26,7 +33,7 @@ if (builder.Environment.IsDevelopment())
 //    app.UseExceptionHandler("/Home/Error");
 //    app.UseHsts();
 //}
-
+Rotativa.AspNetCore.RotativaConfiguration.Setup("wwwroot", wkhtmltopdfRelativePath: "Rotativa");
 
 
 app.UseStaticFiles();
